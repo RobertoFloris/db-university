@@ -1,0 +1,71 @@
+Use `university`;
+
+
+-- Contare quanti iscritti ci sono stati ogni anno
+SELECT YEAR(`enrolment_date`) AS `anno`, COUNT(`id`) AS `numero_iscritti`
+FROM `students`
+GROUP BY `anno`;
+
+-- Contare gli insegnanti che hanno l'ufficio nello stesso edificio
+SELECT `office_address` AS `indirizzo`, COUNT(`id`) AS `numero_insegnanti`
+FROM `teachers`
+GROUP BY `office_address`;
+
+
+-- Calcolare la media dei voti di ogni appello d'esame
+SELECT `exam_id`, AVG(`vote`) AS `media_voti`
+FROM `exam_student`
+GROUP BY `exam_id`;
+
+
+-- Contare quanti corsi di laurea ci sono per ogni dipartimento
+SELECT `department_id`, COUNT(`id`) AS `numero_corsi_laurea`
+FROM `degrees`
+GROUP BY `department_id`;
+
+
+
+
+
+
+
+
+-- Selezionare tutti gli studenti nati nel 1990
+SELECT * 
+FROM `students` 
+WHERE YEAR(`date_of_birth`) = 1990;
+
+-- Selezionare tutti i corsi che valgono più di 10 crediti
+SELECT * 
+FROM `courses` 
+WHERE `cfu` >= 10;
+
+
+
+
+-- Selezionare tutti gli appelli d'esame che avvengono nel pomeriggio (dopo le 14) del 20/06/2020
+SELECT * 
+FROM `exams` 
+WHERE `date` = '2020-06-20' 
+AND `hour` > '14:00:00';
+
+
+-- Selezionare tutti i corsi di laurea magistrale
+SELECT * 
+FROM `degrees` 
+WHERE `level` = 'Magistrale';
+
+
+-- Da quanti dipartimenti è composta l'università?
+SELECT COUNT(*) AS `numero_dipartimenti` 
+FROM `departments`;
+
+
+-- Quanti sono gli insegnanti che non hanno un numero di telefono?
+SELECT COUNT(*) AS `numero_insegnanti_senza_telefono` 
+FROM `teachers` 
+WHERE `phone` IS NULL;
+
+
+
+
